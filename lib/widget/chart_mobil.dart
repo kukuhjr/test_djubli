@@ -21,6 +21,7 @@ class _ChartMobilState extends State<ChartMobil> {
     return Consumer<ChangeState>(
       builder: (context, data, _) {
         var dataMobil = data.dataTransaksi;
+        var select = data.dataIndex;
 
         List<dynamic> dataSeries = [];
         // Data di chart
@@ -36,7 +37,7 @@ class _ChartMobilState extends State<ChartMobil> {
           {
             tooltip: {
               triggerOn: "click",
-              alwaysShowContent: false,
+              alwaysShowContent: true,
               formatter: function(param){
                 var value = param.value;
                 return 'Tanggal: ' + value[3] + '<br>'
@@ -72,21 +73,23 @@ class _ChartMobilState extends State<ChartMobil> {
             },
             series: [
               {
-                name: 'A',
                 symbolSize: 20,
                 type: 'scatter',
                 data: $dataSeries,
                 itemStyle: {
-                  color: ['#c7c91c'],
+                  color: function(params){
+                    if(params.dataIndex == $select){
+                      return '#118c36';
+                    }else{
+                      return '#c7c91c';
+                    }
+                  },
                 },
                 select: {
                   itemStyle: {
-                    color: ['#118c36'],
-                    borderColor: "#118c36",
-                    borderWidth: 3,
+                    color: '#118c36'
                   },
                 },
-                selectedMode: true,
               }
             ],
           }
@@ -100,6 +103,7 @@ class _ChartMobilState extends State<ChartMobil> {
           });
         ''',
           onMessage: (message) {
+            data.updateSelectIndex(message);
             data.changeSlider(int.parse(message));
           },
         );

@@ -41,6 +41,7 @@ class ChangeState extends ChangeNotifier {
     ),
   ];
   CarouselController caroController = CarouselController();
+  String _selectIndex = '0';
 
   int get dataLength {
     return _mobil.length;
@@ -52,5 +53,14 @@ class ChangeState extends ChangeNotifier {
 
   void changeSlider(int pageIndex) {
     caroController.animateToPage(pageIndex);
+  }
+
+  void updateSelectIndex(String newValue) {
+    _selectIndex = newValue;
+    notifyListeners();
+  }
+
+  String get dataIndex {
+    return _selectIndex;
   }
 }

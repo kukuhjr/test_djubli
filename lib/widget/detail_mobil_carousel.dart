@@ -27,7 +27,7 @@ class _DetailMobilCarouselState extends State<DetailMobilCarousel> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 5.0),
               decoration: BoxDecoration(
-                color: Color(0xffc7c91c),
+                color: const Color(0xffc7c91c),
                 borderRadius: BorderRadius.circular(7),
               ),
               child: Column(
@@ -70,8 +70,7 @@ class _DetailMobilCarouselState extends State<DetailMobilCarousel> {
             height: 200,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
-              // TODO: Buat fungsi yang memilih data di chart
-              print(index);
+              data.updateSelectIndex(index.toString());
             },
           ),
         );

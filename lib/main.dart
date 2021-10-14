@@ -1,7 +1,7 @@
+import 'package:test_djubli/screen/penjualan.dart';
+
 import '/change_state.dart';
 import '/constant.dart';
-import '/widget/chart_mobil.dart';
-import '/widget/detail_mobil_carousel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Test Djubli',
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
                         Tab(text: 'MPV'),
                       ],
                       labelColor: Colors.teal[900],
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -87,25 +87,19 @@ class MyApp extends StatelessWidget {
                       indicatorWeight: 3,
                     ),
                     kHeightSpace10,
-                    Text(
-                      "Toyota Camry 2.5 V",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    const Flexible(
+                      child: TabBarView(
+                        children: [
+                          Penjualan(),
+                          Center(
+                            child: Text("Maaf Data SUV Belum Tersedia"),
+                          ),
+                          Center(
+                            child: Text("Maaf Data MPV Belum Tersedia"),
+                          ),
+                        ],
                       ),
                     ),
-                    Text(
-                      '< 2010 >',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    kHeightSpace10,
-                    Flexible(child: ChartMobil()),
-                    kHeightSpace10,
-                    Flexible(child: DetailMobilCarousel()),
-                    kHeightSpace10,
                   ],
                 ),
               ),
